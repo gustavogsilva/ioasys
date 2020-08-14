@@ -23,6 +23,30 @@
     outline: none;
     box-shadow: none;
   }
+  .validation-error-alert {
+    position: absolute;
+    right: 5px;
+    background-color: #ff0f44;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    align-self: center;
+    text-align: center;
+    z-index: 100;
+  }
+  .validation-error-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 5px;
+    color: #ff0f44;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .validation-error {
+    border-bottom: 1px solid #ff0f44;
+  }
 }
 
 .logo {
