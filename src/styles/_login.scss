@@ -1,0 +1,30 @@
+@import "./variables";
+
+.center {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-wrapper {
+  max-width: 400px;
+  padding: 0 20px;
+  .input-group-prepend {
+    background-color: $background-color;
+    border-bottom: 1px solid #383743;
+  }
+  .login-input {
+    background-color: $background-color;
+    border: none;
+    border-bottom: 1px solid #383743;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.logo {
+  width: 250px;
+}

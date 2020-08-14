@@ -1,7 +1,14 @@
 import React from "react";
+import Login from "./pages/Login/Login";
+
+import "./styles/styles.scss";
 
 function App() {
-  return <div className="App">Olá Mundo!</div>;
+  return (
+    <>
+      <Login />
+    </>
+  );
 }
 
 export default App;
