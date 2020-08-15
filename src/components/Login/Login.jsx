@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import logoHome from "./logo-home.svg";
-import iconEmail from "./ic-email.svg";
-import iconLock from "./ic-cadeado.svg";
+import logoHome from "../../assets/logo-home.svg";
+import iconEmail from "../../assets/ic-email.svg";
+import iconLock from "../../assets/ic-cadeado.svg";
+import iconEye from "../../assets/ic-eye.png";
 
 export default function Login() {
-  const [validationError, setValidationError] = useState(false);
   const { register, handleSubmit, watch, errors } = useForm();
+  const [validationError, setValidationError] = useState(false);
+  const [showEye, setShowEye] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Check for validation errors from client side
+  // Check for validation errors in the client side
   useEffect(() => {
     Object.keys(errors).length > 0 ? setValidationError(true) : setValidationError(false);
   }, [errors]);
 
-  const onSubmit = data => "";
+  const handleEye = () => {
+    watch("password") ? setShowEye(true) : setShowEye(false);
+    setValidationError(false);
+  };
 
-  // console.log(watch("email")); // watch input value by passing the name of it
+  const onSubmit = data => "";
 
   return (
     <div className="center">
@@ -52,21 +58,36 @@ export default function Login() {
               <img src={iconLock} alt="Senha" />
             </div>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className={`login-input form-control ${validationError ? "validation-error" : ""}`}
               id="loginPasswordInput"
               placeholder="Senha"
               name="password"
               ref={register({ required: true })}
+              onChange={handleEye}
             />
-            {validationError && <span className="validation-error-alert">!</span>}
+            {validationError ? (
+              <span className="validation-error-alert">!</span>
+            ) : showEye ? (
+              <img
+                src={iconEye}
+                alt="Mostrar ou esconder senha"
+                className="eye"
+                onClick={() => setShowPassword(prevState => !prevState)}
+              />
+            ) : (
+              ""
+            )}
           </div>
           {validationError && (
             <p className="validation-error-text">Credenciais informadas são inválidas, tente novamente.</p>
           )}
 
           <div className="px-3 mt-5">
-            <button type="submit" className="btn btn-info w-100 p-2 font-weight-bold">
+            <button
+              type="submit"
+              className={`btn w-100 p-2 font-weight-bold ${validationError ? "btn-gray" : "btn-blue"}`}
+            >
               ENTRAR
             </button>
           </div>

@@ -1,3 +1,5 @@
+@import "./variables";
+
 * {
   font-family: "Roboto", sans-serif;
   color: #383743;
@@ -10,4 +12,8 @@ body {
 h1 {
   font-size: 1.4rem;
   font-weight: bold;
+}
+
+input {
+  color: #403e4d;
 }

@@ -11,10 +11,12 @@
 #login-wrapper {
   max-width: 400px;
   padding: 0 20px;
+
   .input-group-prepend {
     background-color: $background-color;
     border-bottom: 1px solid #383743;
   }
+
   .login-input {
     background-color: $background-color;
     border: none;
@@ -22,7 +24,23 @@
     border-radius: 0;
     outline: none;
     box-shadow: none;
+    color: #403e4d;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $background-color inset !important;
+  }
+
+  .eye {
+    border-bottom: 1px solid #383743;
+    object-fit: contain;
+    width: 30px;
+    cursor: pointer;
+  }
+
   .validation-error-alert {
     position: absolute;
     right: 5px;
@@ -35,6 +53,7 @@
     text-align: center;
     z-index: 100;
   }
+
   .validation-error-text {
     position: absolute;
     left: 0;
@@ -44,8 +63,19 @@
     font-size: 0.8rem;
     text-align: center;
   }
+
   .validation-error {
     border-bottom: 1px solid #ff0f44;
+  }
+
+  .btn-blue {
+    background-color: #57bbbc;
+    color: #fff;
+  }
+
+  .btn-gray {
+    background-color: #748383;
+    color: #fff;
   }
 }
 
