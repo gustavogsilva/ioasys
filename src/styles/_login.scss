@@ -9,8 +9,12 @@
 }
 
 #login-wrapper {
-  max-width: 400px;
+  max-width: 370px;
   padding: 0 20px;
+
+  .logo {
+    width: 270px;
+  }
 
   .input-group-prepend {
     background-color: $background-color;
@@ -24,7 +28,7 @@
     border-radius: 0;
     outline: none;
     box-shadow: none;
-    color: #403e4d;
+    font-size: 1.3rem;
   }
 
   input:-webkit-autofill,
@@ -32,6 +36,7 @@
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px $background-color inset !important;
+    -webkit-text-fill-color: #403e4d;
   }
 
   .eye {
@@ -77,8 +82,4 @@
     background-color: #748383;
     color: #fff;
   }
-}
-
-.logo {
-  width: 250px;
 }

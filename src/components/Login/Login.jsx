@@ -28,10 +28,12 @@ export default function Login() {
     <div className="center">
       <div id="login-wrapper" className="w-100 d-flex flex-column align-items-center">
         <img src={logoHome} alt="ioasys" className="logo mb-5" />
-        <h1 className="text-center">BEM-VINDO AO EMPRESAS</h1>
-        <p className="text-center">Lorem ipsum dolor sit amet, contetur adipiscing elit. Nunc accumsan.</p>
+        <h1 className="text-center mb-4">
+          BEM-VINDO AO <br /> EMPRESAS
+        </h1>
+        <p className="text-center mb-4">Lorem ipsum dolor sit amet, contetur adipiscing elit. Nunc accumsan.</p>
 
-        <form id="login-form" className="w-100 position-relative" onSubmit={handleSubmit(onSubmit)}>
+        <form id="login-form" className="w-100 position-relative mt-3" onSubmit={handleSubmit(onSubmit)}>
           <label className="sr-only" htmlFor="loginEmailInput">
             E-mail
           </label>
@@ -41,7 +43,7 @@ export default function Login() {
             </div>
             <input
               type="text"
-              className={`login-input form-control ${validationError ? "validation-error" : ""}`}
+              className={`login-input form-control py-0 ${validationError ? "validation-error" : ""}`}
               id="loginEmailInput"
               placeholder="E-mail"
               name="email"
@@ -59,7 +61,7 @@ export default function Login() {
             </div>
             <input
               type={showPassword ? "text" : "password"}
-              className={`login-input form-control ${validationError ? "validation-error" : ""}`}
+              className={`login-input form-control py-0 ${validationError ? "validation-error" : ""}`}
               id="loginPasswordInput"
               placeholder="Senha"
               name="password"
@@ -86,7 +88,7 @@ export default function Login() {
           <div className="px-3 mt-5">
             <button
               type="submit"
-              className={`btn w-100 p-2 font-weight-bold ${validationError ? "btn-gray" : "btn-blue"}`}
+              className={`btn w-100 p-3 font-weight-bold ${validationError ? "btn-gray" : "btn-blue"}`}
             >
               ENTRAR
             </button>
