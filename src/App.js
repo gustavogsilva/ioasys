@@ -1,12 +1,14 @@
 import React from "react";
-import Login from "./components/Login/Login";
+// import LoginPage from "./components/LoginPage";
+import HomePage from "./components/HomePage";
 
 import "./styles/styles.scss";
 
 function App() {
   return (
     <>
-      <Login />
+      {/* <LoginPage /> */}
+      <HomePage />
     </>
   );
 }

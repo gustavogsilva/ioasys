@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import logoHome from "../../assets/logo-home.svg";
+import logoHome from "../../assets/logo-red.svg";
 import iconEmail from "../../assets/ic-email.svg";
 import iconLock from "../../assets/ic-cadeado.svg";
 import iconEye from "../../assets/ic-eye.png";
 
-export default function Login() {
+export function teste() {}
+
+export default function LoginPage() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [validationError, setValidationError] = useState(false);
   const [showEye, setShowEye] = useState(false);
