@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useStateContext } from "../../state/context";
+import { signIn } from "../../state/actions";
+import { Redirect } from "react-router-dom";
 
+// Image imports
 import logoHome from "../../assets/logo-red.svg";
 import iconEmail from "../../assets/ic-email.svg";
 import iconLock from "../../assets/ic-cadeado.svg";
 import iconEye from "../../assets/ic-eye.png";
-
-export function teste() {}
 
 export default function LoginPage() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [validationError, setValidationError] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [state, dispatch] = useStateContext();
+  console.log("State: ", state);
 
   // Check for validation errors in the client side
   useEffect(() => {
@@ -20,11 +24,20 @@ export default function LoginPage() {
   }, [errors]);
 
   const handleEye = () => {
-    watch("password") ? setShowEye(true) : setShowEye(false);
-    setValidationError(false);
+    const password = watch("password");
+    if (password && showEye === false) setShowEye(true);
+    if (!password && showEye === true) setShowEye(false);
+    if (validationError === true) setValidationError(false);
   };
 
-  const onSubmit = data => "";
+  const onSubmit = async ({ email, password }) => {
+    const signInAction = await signIn(email, password);
+    signInAction ? dispatch(signInAction) : setValidationError(true);
+  };
+
+  if (state.isAuthenticated) {
+    return <Redirect to="/homepage" />;
+  }
 
   return (
     <div className="center">
@@ -72,17 +85,18 @@ export default function LoginPage() {
             />
             {validationError ? (
               <span className="validation-error-alert">!</span>
-            ) : showEye ? (
-              <img
-                src={iconEye}
-                alt="Mostrar ou esconder senha"
-                className="eye"
-                onClick={() => setShowPassword(prevState => !prevState)}
-              />
             ) : (
-              ""
+              showEye && (
+                <img
+                  src={iconEye}
+                  alt="Mostrar ou esconder senha"
+                  className="eye"
+                  onClick={() => setShowPassword(prevState => !prevState)}
+                />
+              )
             )}
           </div>
+
           {validationError && (
             <p className="validation-error-text">Credenciais informadas são inválidas, tente novamente.</p>
           )}
