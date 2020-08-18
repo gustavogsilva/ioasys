@@ -1,0 +1,22 @@
+.enterpriseLogo {
+  width: 30%;
+  height: 100px;
+  object-fit: cover;
+  @media (min-width: 992px) {
+    height: 150px;
+  }
+}
+
+.company-card {
+  background-color: #fff;
+  border-radius: 2px;
+
+  .card-title {
+    font-size: 1.2rem;
+    color: #1a0e49;
+  }
+
+  .card-content {
+    color: #8d8c8c;
+  }
+}

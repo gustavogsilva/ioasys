@@ -1,16 +1,23 @@
 #header {
-  height: 150px;
+  height: 120px;
+  width: 100vw;
   background-color: #ee4c77;
   background-image: linear-gradient(#ee4c77, #bb2a51);
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (min-width: 576px) {
+    height: 150px;
+  }
 
   .logo-header {
     width: 180px;
     margin-left: 25px;
     margin-right: auto;
-    // width: 240px;
+    @media (min-width: 576px) {
+      width: 240px;
+      margin: 0 auto;
+    }
   }
 
   .header-button {
@@ -21,6 +28,10 @@
 
   .search-button {
     margin-right: 20px;
+    @media (min-width: 576px) {
+      position: absolute;
+      right: 30px;
+    }
   }
 
   .search-input {
@@ -34,6 +45,14 @@
     &::placeholder {
       color: #991237;
     }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: #fff;
   }
 
   .header-text {

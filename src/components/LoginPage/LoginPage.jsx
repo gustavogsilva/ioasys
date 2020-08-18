@@ -16,13 +16,13 @@ export default function LoginPage() {
   const [showEye, setShowEye] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [state, dispatch] = useStateContext();
-  console.log("State: ", state);
 
   // Check for validation errors in the client side
   useEffect(() => {
     Object.keys(errors).length > 0 ? setValidationError(true) : setValidationError(false);
   }, [errors]);
 
+  // Handle if show the icon eye or not
   const handleEye = () => {
     const password = watch("password");
     if (password && showEye === false) setShowEye(true);
@@ -32,6 +32,7 @@ export default function LoginPage() {
 
   const onSubmit = async ({ email, password }) => {
     const signInAction = await signIn(email, password);
+    console.log("Retornou do signInAction", signInAction);
     signInAction ? dispatch(signInAction) : setValidationError(true);
   };
 
@@ -101,7 +102,7 @@ export default function LoginPage() {
             <p className="validation-error-text">Credenciais informadas são inválidas, tente novamente.</p>
           )}
 
-          <div className="px-3 mt-5">
+          <div className="d-flex px-3 mt-5">
             <button
               type="submit"
               className={`btn w-100 p-3 font-weight-bold ${validationError ? "btn-gray" : "btn-blue"}`}

@@ -1,11 +1,12 @@
-import { MAIN } from "../utils/constants";
+import { STAND_BY } from "../utils/constants";
 
 export const initialState = {
   accessToken: "",
   client: "",
   uid: "",
   isAuthenticated: false,
-  pageState: MAIN, // MAIN, SEARCH, DETAILS
-  detailedCompany: {},
-  CompaniesList: []
+  pageState: STAND_BY, // STAND_BY, SEARCH, DETAILS
+  companies: [],
+  filteredCompanies: [],
+  detailedCompany: {}
 };

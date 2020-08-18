@@ -2,29 +2,32 @@ import React, { useEffect } from "react";
 import { useStateContext } from "../../state/context";
 import { Redirect } from "react-router-dom";
 import { getRequest } from "../../utils/api";
+import { saveCompanies } from "../../state/actions";
 import Header from "../Header/Header";
+import CompaniesList from "../CompaniesList";
 
 export default function HomePage() {
-  const [{ isAuthenticated }] = useStateContext();
-  // Empresas = useState() ?
+  const [{ isAuthenticated }, dispatch] = useStateContext();
 
+  // Get companies and save in state context
   useEffect(() => {
     if (isAuthenticated) {
       (async () => {
-        const data = await getRequest("/enterprises");
-        if (!data) console.log("ERRO AO BUSCAR ENTERPRISES");
-        console.log(data);
+        const { enterprises } = await getRequest("/enterprises");
+        if (!enterprises) return; // TODO
+        dispatch(saveCompanies(enterprises));
       })();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, dispatch]);
 
   if (!isAuthenticated) {
     return <Redirect to="/login" />;
   }
 
   return (
-    <div>
+    <>
       <Header />
-    </div>
+      <CompaniesList />
+    </>
   );
 }

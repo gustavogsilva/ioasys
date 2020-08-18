@@ -8,7 +8,7 @@ export const getRequest = async path => {
     return res.data;
   } catch (error) {
     console.error(error);
-    if (error.response.data.success === undefined) alert("O servidor está fora do ar, tente novamente mais tarde.");
+    if (error.response === undefined) alert("O servidor está fora do ar, tente novamente mais tarde.");
     return false;
   }
 };
