@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useStateContext } from "../../state/context";
-import { signIn } from "../../state/actions";
+import { useStateContext } from "../state/context";
+import { signIn, setLoading } from "../state/actions";
 import { Redirect } from "react-router-dom";
+import Loading from "./Loading";
 
 // Image imports
-import logoHome from "../../assets/logo-red.svg";
-import iconEmail from "../../assets/ic-email.svg";
-import iconLock from "../../assets/ic-cadeado.svg";
-import iconEye from "../../assets/ic-eye.png";
+import logoHome from "../assets/logo-red.svg";
+import iconEmail from "../assets/ic-email.svg";
+import iconLock from "../assets/ic-cadeado.svg";
+import iconEye from "../assets/ic-eye.png";
 
 export default function LoginPage() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [validationError, setValidationError] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [state, dispatch] = useStateContext();
+  const [{ isAuthenticated, loading }, dispatch] = useStateContext();
 
   // Check for validation errors in the client side
   useEffect(() => {
@@ -31,17 +32,19 @@ export default function LoginPage() {
   };
 
   const onSubmit = async ({ email, password }) => {
+    dispatch(setLoading(true));
     const signInAction = await signIn(email, password);
-    console.log("Retornou do signInAction", signInAction);
     signInAction ? dispatch(signInAction) : setValidationError(true);
+    dispatch(setLoading(false));
   };
 
-  if (state.isAuthenticated) {
+  if (isAuthenticated) {
     return <Redirect to="/homepage" />;
   }
 
   return (
     <div className="center">
+      {loading && <Loading />}
       <div id="login-wrapper" className="w-100 d-flex flex-column align-items-center">
         <img src={logoHome} alt="ioasys" className="logo mb-5" />
         <h1 className="text-center mb-4">

@@ -1,7 +1,7 @@
 import React from "react";
 import { useStateContext } from "../../state/context";
-import { SEARCH, DETAILS } from "../../utils/constants";
-import { changePageState } from "../../state/actions";
+import { SEARCH, DETAILS, STAND_BY } from "../../utils/constants";
+import { changePageState, signOut } from "../../state/actions";
 import SearchBar from "./SearchBar";
 
 import logoWhite from "../../assets/logo-white.svg";
@@ -34,21 +34,30 @@ export default function Header() {
     );
   }
 
-  // if (pageState === STAND_BY)
-  return (
-    <header id="header">
-      <div className="container-site p-0">
-        <img src={logoWhite} alt="ioasys" className="logo-header" />
-        <button className="header-button search-button" type="button">
-          <img
-            src={searchIcon}
-            alt="Pesquisar"
+  if (pageState === STAND_BY) {
+    return (
+      <header id="header">
+        <div className="container-site p-0">
+          <button
+            className="logout d-none d-md-block"
             onClick={() => {
-              dispatch(changePageState(SEARCH));
+              dispatch(signOut());
             }}
-          />
-        </button>
-      </div>
-    </header>
-  );
+          >
+            SAIR
+          </button>
+          <img src={logoWhite} alt="ioasys" className="logo-header" />
+          <button className="header-button search-button" type="button">
+            <img
+              src={searchIcon}
+              alt="Pesquisar"
+              onClick={() => {
+                dispatch(changePageState(SEARCH));
+              }}
+            />
+          </button>
+        </div>
+      </header>
+    );
+  }
 }

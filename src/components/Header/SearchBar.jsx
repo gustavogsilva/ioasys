@@ -31,6 +31,7 @@ export default function SearchBar() {
               placeholder="Pesquisar"
               name="search"
               onChange={handleSearch}
+              autoFocus
             />
             <button
               type="button"

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function PageNotFound() {
   return (
-    <div class="center flex-column">
+    <div className="center flex-column">
       <h1>Erro 404</h1>
       <h3>Página não encontrada</h3>
       <h3>

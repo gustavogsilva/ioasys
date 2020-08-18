@@ -2,20 +2,27 @@ import React, { useEffect } from "react";
 import { useStateContext } from "../../state/context";
 import { Redirect } from "react-router-dom";
 import { getRequest } from "../../utils/api";
-import { saveCompanies } from "../../state/actions";
+import { saveCompanies, signOut } from "../../state/actions";
+import { SEARCH, DETAILS, STAND_BY } from "../../utils/constants";
 import Header from "../Header/Header";
 import CompaniesList from "../CompaniesList";
+import CompanyDetails from "../CompanyDetails";
+import StandBy from "./StandBy";
+import Loading from "../Loading";
 
 export default function HomePage() {
-  const [{ isAuthenticated }, dispatch] = useStateContext();
+  const [{ isAuthenticated, pageState, loading }, dispatch] = useStateContext();
 
   // Get companies and save in state context
   useEffect(() => {
     if (isAuthenticated) {
       (async () => {
-        const { enterprises } = await getRequest("/enterprises");
-        if (!enterprises) return; // TODO
-        dispatch(saveCompanies(enterprises));
+        const res = await getRequest("/enterprises");
+        if (!res) {
+          dispatch(signOut);
+          return;
+        }
+        dispatch(saveCompanies(res.enterprises));
       })();
     }
   }, [isAuthenticated, dispatch]);
@@ -27,7 +34,10 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <CompaniesList />
+      {pageState === SEARCH && <CompaniesList />}
+      {pageState === DETAILS && <CompanyDetails />}
+      {pageState === STAND_BY && <StandBy />}
+      {loading && <Loading />}
     </>
   );
 }

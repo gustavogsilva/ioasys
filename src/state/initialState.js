@@ -8,5 +8,6 @@ export const initialState = {
   pageState: STAND_BY, // STAND_BY, SEARCH, DETAILS
   companies: [],
   filteredCompanies: [],
-  detailedCompany: {}
+  detailedCompany: {},
+  loading: false
 };
