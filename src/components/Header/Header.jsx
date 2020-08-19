@@ -9,7 +9,7 @@ import searchIcon from "../../assets/ic-search.svg";
 import leftArrow from "../../assets/left-arrow.png";
 
 export default function Header() {
-  const [{ pageState }, dispatch] = useStateContext();
+  const [{ pageState, detailedCompany }, dispatch] = useStateContext();
 
   if (pageState === SEARCH) {
     return <SearchBar />;
@@ -28,7 +28,7 @@ export default function Header() {
           >
             <img src={leftArrow} alt="voltar" className="header-button" />
           </button>
-          <span className="header-text ml-4"> EMPRESA 1</span>
+          <span className="header-text ml-4"> {detailedCompany.enterprise_name}</span>
         </div>
       </header>
     );
