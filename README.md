@@ -1,6 +1,6 @@
-## Front-End Developer Challenge
+# Front-End Developer Challenge
 
-#### Features:
+## Features:
 
 - Framework React.js;
 - Responsive layout;
@@ -9,9 +9,9 @@
 - Listing Companies by search;
 - Show Company details when a company is cliqued by consulting the API.
 
-#### Live Preview:
+## Live Preview:
 
-**[Available here](https://ioasys-gustavo.herokuapp.com/login)** while the API provided is working:
+[Available here](https://ioasys-gustavo.herokuapp.com/login) while the API provided is working:
 
 - Login: `testeapple@ioasys.com.br`
 - Password: `12341234`
