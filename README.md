@@ -1,4 +1,4 @@
-## Front-End Developer Challenge
+## Front-End Developer Challenge.
 
 ### Features:
 
